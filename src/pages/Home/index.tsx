@@ -1,20 +1,46 @@
-import * as React from 'react';
-import { makeStyles } from '@material-ui/styles';
-import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import React from "react"
+import { Theme } from "@material-ui/core/styles/createMuiTheme"
+import { makeStyles } from "@material-ui/styles"
+import { Box, Button, Grid, Typography } from "@material-ui/core"
+import logo from "../../assets/logo.png"
+import { useAuth } from "../../hooks/useAuth"
 
 const useStyles = makeStyles((theme: Theme) => ({
-  hero: {
-    fontSize: '2.0rem',
-    color: theme.palette.primary.main,
+  container: {
+    width: "100%",
+    height: "100vh",
+    alignItems: "center",
+    justifyContent: "center",
   },
-}));
+}))
 
-interface IHomeProps {}
+const HomePage = () => {
+  const classes = useStyles()
+  const { signOut } = useAuth()
 
-const HomePage = (props: IHomeProps) => {
-  const classes = useStyles();
+  return (
+    <Grid className={classes.container} container direction="row" justify="center" alignItems="center">
+      <Box alignItems="center" justifyContent="center" textAlign="center">
+        <a href="https://invitae.com">
+          <img src={logo} alt="Invitae Logo" />
+        </a>
 
-  return <div className={classes.hero}>Welcome to your sweet new project.</div>;
-};
+        <Typography variant="h3" style={{ marginTop: 24, marginBottom: 24 }}>
+          Hello.
+        </Typography>
 
-export default HomePage;
+        <Button
+          color="primary"
+          variant="outlined"
+          size="large"
+          style={{ marginBottom: 24, fontWeight: 600 }}
+          onClick={() => signOut()}
+        >
+          Log out
+        </Button>
+      </Box>
+    </Grid>
+  )
+}
+
+export default HomePage
