@@ -4,6 +4,7 @@ import { theme } from "./theme"
 import { BrowserRouter } from "react-router-dom"
 import Routes from "./route"
 import useGlobalCSS from "./theme/GlobalCSS"
+import { AuthProvider } from "./hooks/useAuth"
 
 const App: React.FC = () => {
   useGlobalCSS()
@@ -11,9 +12,11 @@ const App: React.FC = () => {
   return (
     <MuiThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <Routes />
-      </BrowserRouter>
+      <AuthProvider>
+        <BrowserRouter>
+          <Routes />
+        </BrowserRouter>
+      </AuthProvider>
     </MuiThemeProvider>
   )
 }
