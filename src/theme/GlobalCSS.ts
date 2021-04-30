@@ -7,6 +7,9 @@ import { primaryFont } from "."
 const useGlobalCSS = makeStyles({
   "@global": {
     body: {
+      margin: 0,
+      padding: 0,
+      boxSizing: "border-box",
       fontFamily: primaryFont,
     },
   },
